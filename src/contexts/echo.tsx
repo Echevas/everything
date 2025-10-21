@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { EchoContext, type EchoContextValue } from "@/hooks/useEcho";
 import type { EchoUser } from "@/types/echo";
 import { useEchoClient } from "@/hooks/useEchoClient";
@@ -155,14 +155,15 @@ export const EchoProvider: React.FC<EchoProviderProps> = ({ children }) => {
     }
   };
 
-  const echoClient = useEchoClient({ apiUrl: import.meta.env.VITE_ECHO_BASE_URL });
+  const echoClient = useEchoClient({
+    apiUrl: import.meta.env.VITE_ECHO_BASE_URL,
+  });
 
-  const {
-    balance,
-    freeTierBalance,
-    refreshBalance,
-  } = useEchoBalance(echoClient, import.meta.env.VITE_ECHO_CLIENT_ID);
-  
+  const { balance, freeTierBalance, refreshBalance } = useEchoBalance(
+    echoClient,
+    import.meta.env.VITE_ECHO_CLIENT_ID,
+  );
+
   useEffect(() => {
     refreshBalance();
   }, [refreshBalance]);

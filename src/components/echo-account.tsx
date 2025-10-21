@@ -1,30 +1,31 @@
-'use client';
+"use client";
 
-import { EchoAccountButtonPopover } from '@/components/echo-popover';
-import { formatCurrency } from '@/lib/currency-utils';
-import { Button } from '@/components/echo-button';
-import { Logo } from '@/components/logo';
-import { Popover, PopoverTrigger } from '@/components/ui/popover';
-import { Skeleton } from '@/components/ui/skeleton';
-import { type EchoContextValue } from '@/hooks/useEcho';
-import { Gift, Loader2 } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { EchoAccountButtonPopover } from "@/components/echo-popover";
+import { formatCurrency } from "@/lib/currency-utils";
+import { Button } from "@/components/echo-button";
+import { Logo } from "@/components/logo";
+import { Popover, PopoverTrigger } from "@/components/ui/popover";
+import { Skeleton } from "@/components/ui/skeleton";
+import { type EchoContextValue } from "@/hooks/useEcho";
+import { Gift, Loader2 } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export function EchoAccountButton({ echo }: { echo: EchoContextValue }) {
-  const { user, balance, freeTierBalance, signIn, isLoading, refreshBalance } = echo;
+  const { user, balance, freeTierBalance, signIn, isLoading, refreshBalance } =
+    echo;
   const [isSigningIn, setIsSigningIn] = useState(false);
-  
+
   // Auto-refresh balance every 10 seconds
   useEffect(() => {
     if (!user) return; // Only refresh when user is authenticated
-    
+
     const interval = setInterval(() => {
       refreshBalance();
     }, 10000); // 10 seconds
-    
+
     return () => clearInterval(interval);
   }, [user, refreshBalance]);
-  
+
   const totalBalance =
     (balance?.balance || 0) + (freeTierBalance?.userSpendInfo.amountLeft || 0);
   const hasFreeCredits = freeTierBalance?.userSpendInfo.amountLeft ?? 0 > 0;
@@ -41,7 +42,7 @@ export function EchoAccountButton({ echo }: { echo: EchoContextValue }) {
         <Logo className="size-5" />
       )}
       <span className="text-xs">
-        {isSigningIn ? 'Connecting...' : 'Connect'}
+        {isSigningIn ? "Connecting..." : "Connect"}
       </span>
     </div>
   ) : (

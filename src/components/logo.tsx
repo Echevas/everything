@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
 
 interface LogoProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
@@ -22,20 +22,20 @@ export const Logo = React.forwardRef<HTMLDivElement, LogoProps>(
           alt="Merit Systems Logo"
           width={200}
           height={200}
-          className={cn('dark:hidden size-6', className)}
-          loading={priority ? 'eager' : undefined}
+          className={cn("dark:hidden size-6", className)}
+          loading={priority ? "eager" : undefined}
         />
         <img
           src="/logo/dark.svg"
           alt="Merit Systems Logo"
           width={200}
           height={200}
-          className={cn('hidden dark:block size-6', className)}
-          loading={priority ? 'eager' : undefined}
+          className={cn("hidden dark:block size-6", className)}
+          loading={priority ? "eager" : undefined}
         />
       </div>
     );
-  }
+  },
 );
 
-Logo.displayName = 'Logo';
+Logo.displayName = "Logo";

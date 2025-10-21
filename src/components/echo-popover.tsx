@@ -1,11 +1,11 @@
-'use client';
-import EchoBalance from '@/components/balance';
-import { EchoTopUpButton } from '@/components/top-up-button';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/echo-button';
-import { PopoverContent } from '@/components/ui/popover';
-import { type EchoContextValue } from '@/hooks/useEcho';
-import { LogOut } from 'lucide-react';
+"use client";
+import EchoBalance from "@/components/balance";
+import { EchoTopUpButton } from "@/components/top-up-button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/echo-button";
+import { PopoverContent } from "@/components/ui/popover";
+import { type EchoContextValue } from "@/hooks/useEcho";
+import { LogOut } from "lucide-react";
 
 export function EchoAccountButtonPopover({ echo }: { echo: EchoContextValue }) {
   const { user, signOut } = echo;
@@ -17,12 +17,12 @@ export function EchoAccountButtonPopover({ echo }: { echo: EchoContextValue }) {
           variant="ghost"
           className="flex items-center gap-2 h-auto p-1.5 -ml-1.5 hover:bg-accent"
           onClick={() =>
-            window.open('https://echo.merit.systems/dashboard', '_blank')
+            window.open("https://echo.merit.systems/dashboard", "_blank")
           }
         >
           <div className="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center">
             <Avatar className="h-7 w-7">
-              <AvatarImage src={user?.image ?? ''} />
+              <AvatarImage src={user?.image ?? ""} />
               <AvatarFallback>
                 {user?.name?.charAt(0) || user?.email?.charAt(0)}
               </AvatarFallback>
@@ -30,7 +30,7 @@ export function EchoAccountButtonPopover({ echo }: { echo: EchoContextValue }) {
           </div>
           <div className="text-left">
             <h4 className="font-medium text-sm">
-              {user?.name || user?.email || 'Account'}
+              {user?.name || user?.email || "Account"}
             </h4>
             <p className="text-xs text-muted-foreground/80">{user?.id}</p>
           </div>

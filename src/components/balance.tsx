@@ -1,12 +1,12 @@
-import { formatCurrency } from '@/lib/currency-utils';
+import { formatCurrency } from "@/lib/currency-utils";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip';
-import { type EchoContextValue } from '@/hooks/useEcho';
-import { Gift } from 'lucide-react';
+} from "@/components/ui/tooltip";
+import { type EchoContextValue } from "@/hooks/useEcho";
+import { Gift } from "lucide-react";
 
 export default function EchoBalance({ echo }: { echo: EchoContextValue }) {
   const { balance, freeTierBalance } = echo;

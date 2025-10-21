@@ -1,6 +1,9 @@
 import React from "react";
 import type { EchoUser, EchoBalance } from "@/types/echo";
-import type { EchoClient, GetBalanceByIdFreeResponse } from "@merit-systems/echo-typescript-sdk";
+import type {
+  EchoClient,
+  GetBalanceByIdFreeResponse,
+} from "@merit-systems/echo-typescript-sdk";
 
 interface EchoContextValue {
   user: EchoUser | null;

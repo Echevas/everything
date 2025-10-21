@@ -1,45 +1,45 @@
-import { Action, Actions } from '@/components/ai-elements/actions';
+import { Action, Actions } from "@/components/ai-elements/actions";
 import {
   Conversation,
   ConversationContent,
   ConversationEmptyState,
   ConversationScrollButton,
-} from '@/components/ai-elements/conversation';
-import { Loader } from '@/components/ai-elements/loader';
-import { Message, MessageContent } from '@/components/ai-elements/message';
+} from "@/components/ai-elements/conversation";
+import { Loader } from "@/components/ai-elements/loader";
+import { Message, MessageContent } from "@/components/ai-elements/message";
 import {
   PromptInput,
   PromptInputSubmit,
   PromptInputTextarea,
   PromptInputToolbar,
-} from '@/components/ai-elements/prompt-input';
+} from "@/components/ai-elements/prompt-input";
 import {
   Reasoning,
   ReasoningContent,
   ReasoningTrigger,
-} from '@/components/ai-elements/reasoning';
-import { Response } from '@/components/ai-elements/response';
+} from "@/components/ai-elements/reasoning";
+import { Response } from "@/components/ai-elements/response";
 import {
   Source,
   Sources,
   SourcesContent,
   SourcesTrigger,
-} from '@/components/ai-elements/sources';
-import { Suggestion, Suggestions } from '@/components/ai-elements/suggestion';
-import { useEcho } from '@/hooks/useEcho';
-import { useChat } from '@/hooks/useChat';
-import { CopyIcon, MessageSquare } from 'lucide-react';
-import { Fragment, useState } from 'react';
-import { EchoAccount } from '@/components/echo-account-react';
+} from "@/components/ai-elements/sources";
+import { Suggestion, Suggestions } from "@/components/ai-elements/suggestion";
+import { useEcho } from "@/hooks/useEcho";
+import { useChat } from "@/hooks/useChat";
+import { CopyIcon, MessageSquare } from "lucide-react";
+import { Fragment, useState } from "react";
+import { EchoAccount } from "@/components/echo-account-react";
 
 const suggestions = [
-  'Can you explain how to play tennis?',
-  'Write me a code snippet of how to use the vercel ai sdk to create a chatbot',
-  'How do I make a really good fish taco?',
+  "Can you explain how to play tennis?",
+  "Write me a code snippet of how to use the vercel ai sdk to create a chatbot",
+  "How do I make a really good fish taco?",
 ];
 
 const ChatBotDemo = () => {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const { messages, sendMessage, status } = useChat();
 
   const { user } = useEcho();
@@ -50,7 +50,7 @@ const ChatBotDemo = () => {
     e.preventDefault();
     if (input.trim()) {
       sendMessage({ text: input });
-      setInput('');
+      setInput("");
     }
   };
 
@@ -70,21 +70,21 @@ const ChatBotDemo = () => {
                 description="Start a conversation to see messages here"
               />
             ) : (
-              messages.map(message => (
+              messages.map((message) => (
                 <div key={message.id}>
-                  {message.role === 'assistant' &&
-                    message.parts.filter(part => part.type === 'source-url')
+                  {message.role === "assistant" &&
+                    message.parts.filter((part) => part.type === "source-url")
                       .length > 0 && (
                       <Sources>
                         <SourcesTrigger
                           count={
                             message.parts.filter(
-                              part => part.type === 'source-url'
+                              (part) => part.type === "source-url",
                             ).length
                           }
                         />
                         {message.parts
-                          .filter(part => part.type === 'source-url')
+                          .filter((part) => part.type === "source-url")
                           .map((part, i) => (
                             <SourcesContent key={`${message.id}-${i}`}>
                               <Source
@@ -98,7 +98,7 @@ const ChatBotDemo = () => {
                     )}
                   {message.parts.map((part, i) => {
                     switch (part.type) {
-                      case 'text':
+                      case "text":
                         return (
                           <Fragment key={`${message.id}-${i}`}>
                             <Message from={message.role}>
@@ -108,7 +108,7 @@ const ChatBotDemo = () => {
                                 </Response>
                               </MessageContent>
                             </Message>
-                            {message.role === 'assistant' &&
+                            {message.role === "assistant" &&
                               i === messages.length - 1 && (
                                 <Actions className="mt-2">
                                   <Action
@@ -123,13 +123,13 @@ const ChatBotDemo = () => {
                               )}
                           </Fragment>
                         );
-                      case 'reasoning':
+                      case "reasoning":
                         return (
                           <Reasoning
                             key={`${message.id}-${i}`}
                             className="w-full"
                             isStreaming={
-                              status === 'streaming' &&
+                              status === "streaming" &&
                               i === message.parts.length - 1 &&
                               message.id === messages[messages.length - 1].id
                             }
@@ -145,7 +145,7 @@ const ChatBotDemo = () => {
                 </div>
               ))
             )}
-            {status === 'submitted' && <Loader />}
+            {status === "submitted" && <Loader />}
           </ConversationContent>
           <ConversationScrollButton />
         </Conversation>
@@ -159,11 +159,11 @@ const ChatBotDemo = () => {
 
           <div
             className={
-              !isSignedIn ? 'pointer-events-none select-none opacity-50' : ''
+              !isSignedIn ? "pointer-events-none select-none opacity-50" : ""
             }
           >
             <Suggestions>
-              {suggestions.map(suggestion => (
+              {suggestions.map((suggestion) => (
                 <Suggestion
                   key={suggestion}
                   onClick={handleSuggestionClick}
@@ -173,7 +173,7 @@ const ChatBotDemo = () => {
             </Suggestions>
             <PromptInput onSubmit={handleSubmit} className="flex-shrink-0 mt-2">
               <PromptInputTextarea
-                onChange={e => setInput(e.target.value)}
+                onChange={(e) => setInput(e.target.value)}
                 value={input}
               />
               <PromptInputToolbar className="justify-end">

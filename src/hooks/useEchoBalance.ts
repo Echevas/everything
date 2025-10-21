@@ -1,14 +1,13 @@
+import useSWR from "swr";
 
-import useSWR from 'swr';
-
-import { EchoClient, parseEchoError } from '@merit-systems/echo-typescript-sdk';
+import { EchoClient, parseEchoError } from "@merit-systems/echo-typescript-sdk";
 
 export function useEchoBalance(echoClient: EchoClient | null, appId: string) {
   const { data, error, isLoading, mutate } = useSWR(
-    echoClient && appId ? ['balance', appId] : null,
+    echoClient && appId ? ["balance", appId] : null,
     async () => {
       if (!echoClient) {
-        throw new Error('Not authenticated');
+        throw new Error("Not authenticated");
       }
 
       try {
@@ -24,7 +23,7 @@ export function useEchoBalance(echoClient: EchoClient | null, appId: string) {
       } catch (err) {
         const echoError = parseEchoError(
           err instanceof Error ? err : new Error(String(err)),
-          'refreshing balance'
+          "refreshing balance",
         );
         throw echoError;
       }
@@ -33,7 +32,7 @@ export function useEchoBalance(echoClient: EchoClient | null, appId: string) {
       errorRetryCount: 2,
       revalidateOnFocus: true,
       dedupingInterval: 30000, // 30s deduping
-    }
+    },
   );
 
   return {
